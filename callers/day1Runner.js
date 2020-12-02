@@ -1,4 +1,4 @@
-const aoc2020 = require("./dist/index");
+const aoc2020 = require("../dist/index");
 
 const testInput = [
   1313,

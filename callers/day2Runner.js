@@ -1,4 +1,4 @@
-const aoc2020 = require("./dist/index");
+const aoc2020 = require("../dist/index");
 
 const testInput = `3-5 f: fgfff
 6-20 n: qlzsnnnndwnlhwnxhvjn
