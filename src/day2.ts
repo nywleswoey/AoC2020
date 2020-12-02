@@ -21,4 +21,21 @@ const getNumOfValidPasswords = (input: string) => {
   return passwordCheckStatuses.filter((x) => x).length;
 };
 
-export { parseLine, getNumOfValidPasswords };
+const isPasswordValid2 = (parsedLine: string[]) => {
+  const firstPos = Number(parsedLine[0]) - 1;
+  const secondPos = Number(parsedLine[1]) - 1;
+  const firstChar = parsedLine[3].charAt(firstPos);
+  const secondChar = parsedLine[3].charAt(secondPos);
+
+  return (
+    firstChar !== secondChar &&
+    (firstChar === parsedLine[2] || secondChar === parsedLine[2])
+  );
+};
+
+const getNumOfValidPasswords2 = (input: string) => {
+  const passwordCheckStatuses = parseInput(input).map(isPasswordValid2);
+  return passwordCheckStatuses.filter((x) => x).length;
+};
+
+export { parseLine, getNumOfValidPasswords, getNumOfValidPasswords2 };
