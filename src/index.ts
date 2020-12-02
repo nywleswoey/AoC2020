@@ -1,1 +1,1 @@
-export { findProduct } from "./day1";
+export { findProductFor2, findProductFor3 } from "./day1";
