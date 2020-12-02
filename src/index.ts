@@ -1,1 +1,1 @@
-export { findProduct } from "./day1/puzzle1";
+export { findProduct } from "./day1";
