@@ -1,4 +1,4 @@
-import { parseLine } from "./day2";
+import { parseLine, getNumOfValidPasswords } from "./day2";
 
 describe("day 2 puzzle 1", () => {
   describe("parseLine", () => {
@@ -33,6 +33,17 @@ describe("day 2 puzzle 1", () => {
       expect(result[1]).toBe("9");
       expect(result[2]).toBe("c");
       expect(result[3]).toBe("ccccccccc");
+    });
+  });
+
+  describe("getNumOfValidPasswords", () => {
+    it("should return 2 when given the test input", () => {
+      const testInput = `1-3 a: abcde
+1-3 b: cdefg
+2-9 c: ccccccccc`;
+
+      const result = getNumOfValidPasswords(testInput);
+      expect(result).toBe(2);
     });
   });
 });
