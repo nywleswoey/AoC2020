@@ -1,4 +1,4 @@
-const aoc2020=require('./dist/index'); 
+const aoc2020 = require("./dist/index");
 
 const testInput = [
   1313,
@@ -203,4 +203,5 @@ const testInput = [
   1570,
 ];
 
-console.log(aoc2020.findProduct(testInput));
+console.log(aoc2020.findProductFor2(testInput, 2020));
+console.log(aoc2020.findProductFor3(testInput));

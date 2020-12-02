@@ -7,7 +7,7 @@ describe("day 1 puzzle 1", () => {
 
       // expected 2 numbers: 1721, 299
       // expected product: 514579
-      expect(findProductFor2(testInput)).toBe(514579);
+      expect(findProductFor2(testInput, 2020)).toBe(514579);
     });
   });
 });
