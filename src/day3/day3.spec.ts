@@ -1,7 +1,7 @@
-import { readFile } from "../helper";
+import { readFileInto2DCharArray } from "../helper";
 import { getNumTreesEncountered } from "./day3";
 
-const testInput = readFile("inputs/day3/testInput.txt");
+const testInput = readFileInto2DCharArray("inputs/day3/testInput.txt");
 
 describe("day 3", () => {
   describe("getNumTreesEncountered", () => {
