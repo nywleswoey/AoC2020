@@ -2,13 +2,6 @@ const parseLine = (s: string) => {
   return s.split(/(?:-|\s|:\s)/);
 };
 
-const parseInput = (input: string) => {
-  const lines = input.split(/\n/);
-
-  const parsedLines = lines.map(parseLine);
-  return parsedLines;
-};
-
 const isPasswordValid = (parsedLine: string[]) => {
   const min = Number(parsedLine[0]);
   const max = Number(parsedLine[1]);
@@ -16,8 +9,8 @@ const isPasswordValid = (parsedLine: string[]) => {
   return numOccurences >= min && numOccurences <= max;
 };
 
-const getNumOfValidPasswords = (input: string) => {
-  const passwordCheckStatuses = parseInput(input).map(isPasswordValid);
+const getNumOfValidPasswords = (input: string[]) => {
+  const passwordCheckStatuses = input.map(parseLine).map(isPasswordValid);
   return passwordCheckStatuses.filter((x) => x).length;
 };
 
@@ -33,8 +26,8 @@ const isPasswordValid2 = (parsedLine: string[]) => {
   );
 };
 
-const getNumOfValidPasswords2 = (input: string) => {
-  const passwordCheckStatuses = parseInput(input).map(isPasswordValid2);
+const getNumOfValidPasswords2 = (input: string[]) => {
+  const passwordCheckStatuses = input.map(parseLine).map(isPasswordValid2);
   return passwordCheckStatuses.filter((x) => x).length;
 };
 
