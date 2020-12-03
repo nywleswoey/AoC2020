@@ -1,4 +1,8 @@
-const getNumTreesEncountered = (input: string[], slopeX: number) => {
+const getNumTreesEncountered = (
+  input: string[],
+  slopeX: number,
+  slopeY: number
+) => {
   const width = input[0].length; // assume all rows are of the same width
 
   const areaMap = input.map((row) => {
@@ -11,7 +15,7 @@ const getNumTreesEncountered = (input: string[], slopeX: number) => {
 
   let realX = 0;
   let treeCount = 0;
-  for (let y = 0; y < input.length; y++) {
+  for (let y = 0; y < input.length; y += slopeY) {
     if (areaMap[y][realX]) {
       treeCount++;
     }
