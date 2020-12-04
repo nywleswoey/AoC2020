@@ -19,7 +19,7 @@ const parseFileIntoPassports = (path: string) => {
   return passports;
 }
 
-const isPassportValid = (passport: string) => {
+const areReqFieldsPresent = (passport: string) => {
   const reqFields = ['byr', 'iyr', 'eyr', 'hgt', 'hcl', 'ecl', 'pid'];
 
   const tokens = passport.split(/(?:\s|:)/)
@@ -32,80 +32,55 @@ const isPassportValid = (passport: string) => {
   return true;
 }
 
-const isPassportValidV2 = (passport: string) => {
-  const fields = passport.split(' ')
-  const passportValue = new Map<string, string>();
+const arePassportValuesValid = (passportStr: string) => {
+  if (!areReqFieldsPresent(passportStr)) {
+    return false;
+  }
+
+  const validationRules = new Map<string, (value: string) => boolean>([
+    ['byr', (value: string) => {
+      const byr = Number(value);
+      return byr >= 1920 && byr <= 2002;
+    }],
+    ['iyr', (value: string) => {
+      const iyr = Number(value);
+      return iyr >= 2010 && iyr <= 2020;
+    }],
+    ['eyr', (value: string) => {
+      const eyr = Number(value);
+      return eyr >= 2020 && eyr <= 2030;
+    }], ['hgt', (value: string) => {
+      const hgtValue = Number(value.substr(0, value.length - 2));
+      const hgtUnit = value.substr(value.length - 2);
+
+      if (hgtUnit !== 'cm' && hgtUnit !== 'in') {
+        return false;
+      }
+
+      if (hgtUnit === 'cm') {
+        return hgtValue >= 150 && hgtValue <= 193
+      }
+
+      return hgtValue >= 59 && hgtValue <= 76;
+    }], ['hcl', (value: string) => {
+      return !!value.match(/^\#[0-9a-f]{6}$/);
+    }], ['ecl', (value: string) => {
+      return !!value.match(/^(amb|blu|brn|gry|grn|hzl|oth)$/);
+    }], ['pid', (value: string) => {
+      return !!value.match(/^[\d]{9}$/);
+    }]
+  ]);
+
+  const fields = passportStr.split(' ')
   for (const field of fields) {
     const [key, value] = field.split(':');
-    passportValue.set(key, value);
+    const validationFunc = validationRules.get(key);
+    
+    if (validationFunc !== undefined && !validationFunc(value)) {
+      return false;
+    }
   }
-
-  if (!passportValue.has('byr')) {
-    return false;
-  }
-
-  const byr = Number(passportValue.get('byr'));
-  if (byr < 1920 || byr > 2002) {
-    return false;
-  }
-
-  if (!passportValue.has('iyr')) {
-    return false;
-  }
-  const iyr = Number(passportValue.get('iyr'));
-  if (iyr < 2010 || iyr > 2020) {
-    return false;
-  }
-
-  if (!passportValue.has('eyr')) {
-    return false;
-  }
-  const eyr = Number(passportValue.get('eyr'));
-  if (eyr < 2020 || eyr > 2030) {
-    return false;
-  }
-
-  if (!passportValue.has('hgt')) {
-    return false;
-  }
-  const hgt = passportValue.get('hgt')!;
-  const hgtValue = Number(hgt.substr(0, hgt.length - 2));
-  const hgtUnit = hgt.substr(hgt.length - 2);
-  if (hgtUnit === 'cm' && (hgtValue < 150 || hgtValue > 193)) {
-    return false;
-  }
-  if (hgtUnit === 'in' && (hgtValue < 59 || hgtValue > 76)) {
-    return false;
-  }
-  if (hgtUnit !== 'cm' && hgtUnit !== 'in') {
-    return false;
-  }
-
-  if (!passportValue.has('hcl')) {
-    return false;
-  }
-  const hcl = passportValue.get('hcl')!;
-  if (!hcl.match(/^\#[0-9a-f]{6}$/)) {
-    return false;
-  }
-
-  if (!passportValue.has('ecl')) {
-    return false;
-  }
-  const ecl = passportValue.get('ecl')!;
-  if (!ecl.match(/^(amb|blu|brn|gry|grn|hzl|oth)$/)) {
-    return false;
-  }
-
-  if (!passportValue.has('pid')) {
-    return false;
-  }
-  const pid = passportValue.get('pid')!;
-  if (!pid.match(/^[\d]{9}$/)) {
-    return false;
-  }
-
   return true;
 }
 
-export { parseFileIntoPassports, isPassportValid, isPassportValidV2 };
+export { parseFileIntoPassports, areReqFieldsPresent, arePassportValuesValid };
