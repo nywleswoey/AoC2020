@@ -35,3 +35,25 @@ describe("day 4 puzzle 1", () => {
     });
   });
 });
+
+describe("day 4 puzzle 2", () => {
+  describe("valid passports", () => {
+    it("all passports should return true", () => {
+      const testValidPassports = parseFileIntoPassports("inputs/day4/validpp.txt");
+
+      for (const input of testValidPassports) {
+        const result = isPassportValidV2(input);
+        expect(result).toBe(true);
+      }
+    });
+
+    it("all passports should return false", () => {
+      const testInvalidPassports = parseFileIntoPassports("inputs/day4/invalidpp.txt");
+
+      for (const input of testInvalidPassports) {
+        const result = isPassportValidV2(input);
+        expect(result).toBe(false);
+      }
+    });
+  });
+});
