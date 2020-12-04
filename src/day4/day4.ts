@@ -19,4 +19,17 @@ const parseFileIntoPassports = (path: string) => {
   return passports;
 }
 
-export { parseFileIntoPassports };
+const isPassportValid = (passport: string) => {
+  const reqFields = ['byr', 'iyr', 'eyr', 'hgt', 'hcl', 'ecl', 'pid'];
+
+  const tokens = passport.split(/(?:\s|:)/)
+  for (const reqField of reqFields) {
+    if (!tokens.includes(reqField)) {
+      return false;
+    }
+  }
+
+  return true;
+}
+
+export { parseFileIntoPassports, isPassportValid };
