@@ -1,5 +1,5 @@
 import {
-  parseFileIntoPassports, isPassportValid
+  parseFileIntoPassports, isPassportValid, isPassportValidV2
 } from "./day4";
 
 describe("day 4 puzzle 1", () => {
