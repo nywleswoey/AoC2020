@@ -30,4 +30,17 @@ const countNumYesPerGrp = (responses: string[]) => {
   return yesMap.size;
 }
 
-export { parseFileIntoResponseGroups, countNumYesPerGrp };
+const countNumAllYesPerGrp = (responses: string[]) => {
+  const firstResponse = responses[0];
+  let allYesCount = 0;
+
+  const yeses = firstResponse.split('');
+
+  for (const y of yeses) {
+    const allYes = responses.reduce((p, c) => p && c.includes(y), true);
+    allYesCount = allYes ? allYesCount + 1 : allYesCount;
+  }
+  return allYesCount;
+}
+
+export { parseFileIntoResponseGroups, countNumYesPerGrp, countNumAllYesPerGrp };

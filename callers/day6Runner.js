@@ -6,3 +6,6 @@ const testInput = aoc2020.parseFileIntoResponseGroups(
 
 const yesCounts = testInput.map(aoc2020.countNumYesPerGrp);
 console.log(yesCounts.reduce((p, c) => p + c, 0));
+
+const allYesCounts = testInput.map(aoc2020.countNumAllYesPerGrp);
+console.log(allYesCounts.reduce((p, c) => p + c, 0));
