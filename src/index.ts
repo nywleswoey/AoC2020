@@ -4,3 +4,4 @@ export { getNumOfValidPasswords, getNumOfValidPasswords2 } from "./day2/day2";
 export { getNumTreesEncountered } from "./day3/day3";
 export { parseFileIntoPassports, areReqFieldsPresent, arePassportValuesValid } from "./day4/day4";
 export { getBoardingPassDetails } from "./day5/day5";
+export { parseFileIntoResponseGroups, countNumYesPerGrp } from "./day6/day6";
