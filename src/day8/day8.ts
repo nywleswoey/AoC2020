@@ -37,4 +37,28 @@ const findAccBeforeLoop = (instructions: string[]): [number, boolean] => {
   return [accumulator, isLoop];
 }
 
-export { findAccBeforeLoop };
+const findAccAfterProgEnd = (instructions: string[]) => {
+  let clone = [...instructions];
+
+  for (let i = 0; i < instructions.length; i++) {
+    if (instructions[i].startsWith('nop')) {
+      clone = [...instructions];
+      clone[i] = clone[i].replace('nop', 'jmp');
+      const [accumulator, isLoop] = findAccBeforeLoop(clone)
+      if (!isLoop) {
+        return accumulator;
+      }
+    } else if (instructions[i].startsWith('jmp')) {
+      clone = [...instructions];
+      clone[i] = clone[i].replace('jmp', 'nop');
+      const [accumulator, isLoop] = findAccBeforeLoop(clone)
+      if (!isLoop) {
+        return accumulator;
+      }
+    } else {
+      continue
+    }
+  }
+}
+
+export { findAccBeforeLoop, findAccAfterProgEnd };
