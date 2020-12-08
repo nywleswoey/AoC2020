@@ -30,4 +30,44 @@ const getBagCountContainingWantedBag = (bagDetails: string[], wantedBag: string)
   return containingBagMap.size;
 }
 
-export { getBagCountContainingWantedBag };
+const computeNumBagsInBag = (bagDetails: string[], wanted: string) => {
+  const bagContentsMap = new Map<string, [number, string][]>();
+  const bagContentCountMap = new Map<string, number>();
+
+  for (const bd of bagDetails) {
+    const tokens = bd.split(' contain ');
+    const containerBag = tokens[0].replace(' bags', '');
+
+    if (tokens[1] === 'no other bags.') {
+      bagContentCountMap.set(containerBag, 1);
+    } else {
+      const bagContentDetails = tokens[1].split(', ');
+      const parsedBagContents: [number, string][] = bagContentDetails.map(bcd => {
+        const words = bcd.split(' ');
+        const count = Number(words[0]);
+        const bag = `${words[1]} ${words[2]}`;
+        return [count, bag];
+      });
+
+      bagContentsMap.set(containerBag, parsedBagContents);
+    }
+  }
+
+  const computeBagCount = (bagColor: string): number => {
+    let bagContentCount = bagContentCountMap.get(bagColor);
+    if (bagContentCount !== undefined) {
+      return bagContentCount;
+    }
+
+    const bagContents = bagContentsMap.get(bagColor)!;
+    bagContentCount = bagContents.reduce((currentCount, bagContentDetails) => {
+      return currentCount + bagContentDetails[0] * computeBagCount(bagContentDetails[1]);
+    }, 1);
+    bagContentCountMap.set(bagColor, bagContentCount);
+    return bagContentCount;
+  }
+
+  return computeBagCount(wanted) - 1;
+}
+
+export { getBagCountContainingWantedBag, computeNumBagsInBag };
