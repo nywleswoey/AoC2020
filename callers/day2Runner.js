@@ -1,6 +1,6 @@
-const aoc2020 = require("../dist/index");
+const { helpers, day2 } = require("../dist/index");
 
-const testInput = aoc2020.readFile('inputs/day2/puzzleInput.txt');
+const testInput = helpers.readFile("inputs/day2/puzzleInput.txt");
 
-console.log(aoc2020.getNumOfValidPasswords(testInput));
-console.log(aoc2020.getNumOfValidPasswords2(testInput));
+console.log(day2.getNumOfValidPasswords(testInput));
+console.log(day2.getNumOfValidPasswords2(testInput));

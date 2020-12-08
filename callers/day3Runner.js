@@ -1,8 +1,10 @@
-const aoc2020 = require("../dist/index");
+const { helpers, day3 } = require("../dist/index");
 
-const testInput = aoc2020.readFileInto2DCharArray("inputs/day3/puzzleInput.txt");
+const testInput = helpers.readFileInto2DCharArray(
+  "inputs/day3/puzzleInput.txt"
+);
 
-console.log(aoc2020.getNumTreesEncountered(testInput, 3, 1));
+console.log(day3.getNumTreesEncountered(testInput, 3, 1));
 
 const slopes = [
   [1, 1],
@@ -13,7 +15,7 @@ const slopes = [
 ];
 
 const treeCounts = slopes.map(([x, y]) => {
-  return aoc2020.getNumTreesEncountered(testInput, x, y);
+  return day3.getNumTreesEncountered(testInput, x, y);
 });
 
 console.log(treeCounts.reduce((p, c) => p * c, 1));

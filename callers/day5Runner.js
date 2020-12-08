@@ -1,8 +1,8 @@
-const aoc2020 = require("../dist/index");
+const { helpers, day5 } = require("../dist/index");
 
-const testInput = aoc2020.readFile("inputs/day5/puzzleInput.txt");
+const testInput = helpers.readFile("inputs/day5/puzzleInput.txt");
 
-const boardingPassDetails = testInput.map(aoc2020.getBoardingPassDetails);
+const boardingPassDetails = testInput.map(day5.getBoardingPassDetails);
 const maxSeatId = boardingPassDetails.reduce((p, c) => {
   return Math.max(p, c[2]);
 }, 0);
