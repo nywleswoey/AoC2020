@@ -5,3 +5,4 @@ export { getNumTreesEncountered } from "./day3/day3";
 export { parseFileIntoPassports, areReqFieldsPresent, arePassportValuesValid } from "./day4/day4";
 export { getBoardingPassDetails } from "./day5/day5";
 export { parseFileIntoResponseGroups, countNumYesPerGrp, countNumAllYesPerGrp } from "./day6/day6";
+export { getBagCountContainingWantedBag } from "./day7/day7";
