@@ -23,4 +23,22 @@ const findInvalidNumber = (input: number[], preamble: number): number => {
   return -1;
 }
 
-export { findInvalidNumber };
+const findSumOfMinMaxInContiguousBlock = (input: number[], expected: number) => {
+  let startIndex = 0;
+  let currentSum = input[0];
+  for (let x = 1; x < input.length; x++) {
+    currentSum += input[x];
+
+    while (currentSum > expected) {
+      currentSum -= input[startIndex];
+      startIndex++;
+    }
+
+    if (currentSum === expected) {
+      const contiguousBlock = input.slice(startIndex, x);
+      return Math.min(...contiguousBlock) + Math.max(...contiguousBlock);
+    }
+  }
+}
+
+export { findInvalidNumber, findSumOfMinMaxInContiguousBlock };
