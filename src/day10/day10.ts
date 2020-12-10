@@ -12,4 +12,18 @@ const findDifferenceDistribution = (voltages: number[]) => {
   return differenceArr;
 }
 
-export { findDifferenceDistribution };
+const findPermutations = (voltages: number[]) => {
+  const sortedVoltages = voltages.sort((a, b) => a - b);
+  const voltageToNumWaysMap = new Map<number, number>();
+  voltageToNumWaysMap.set(0, 1);
+
+  for (let i = 0; i < sortedVoltages.length; i++) {
+    const currVoltage = sortedVoltages[i];
+    const numWays = (voltageToNumWaysMap.get(currVoltage - 1) ?? 0) + (voltageToNumWaysMap.get(currVoltage - 2) ?? 0) + (voltageToNumWaysMap.get(currVoltage - 3) ?? 0);
+    voltageToNumWaysMap.set(currVoltage, numWays)
+  }
+
+  return voltageToNumWaysMap.get(sortedVoltages[sortedVoltages.length - 1]);
+}
+
+export { findDifferenceDistribution, findPermutations };
