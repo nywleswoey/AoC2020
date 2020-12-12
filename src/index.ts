@@ -10,7 +10,8 @@ import * as day8 from "./day8/day8";
 import * as day9 from "./day9/day9";
 import * as day10 from "./day10/day10";
 import * as day11 from "./day11/day11";
+import * as day12 from "./day12/day12";
 
 export {
-  helpers, day1, day2, day3, day4, day5, day6, day7, day8, day9, day10, day11
+  helpers, day1, day2, day3, day4, day5, day6, day7, day8, day9, day10, day11, day12
 }
