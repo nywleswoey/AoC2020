@@ -49,4 +49,78 @@ const findManhattanDistance = (instructions: string[]) => {
   return (north > 0 ? north : -north) + (east > 0 ? east : -east);
 }
 
-export { findManhattanDistance };
+const findManhattanDistance2 = (instructions: string[]) => {
+  let north = 0, east = 0;
+  let wpNorth = 1, wpEast = 10;
+
+  for (const instruction of instructions) {
+    const action = instruction.substr(0, 1);
+    const value = Number(instruction.substr(1));
+
+    switch (action) {
+      case 'N':
+        wpNorth += value;
+        break;
+      case 'S':
+        wpNorth -= value;
+        break;
+      case 'E':
+        wpEast += value;
+        break;
+      case 'W':
+        wpEast -= value;
+        break;
+      case 'F':
+        north += (value * wpNorth);
+        east += (value * wpEast);
+        break;
+      case 'L': {
+        const directionChangeMagnitude = value / 90;
+        const oldWpNorth = wpNorth;
+        const oldWpEast = wpEast;
+        switch (directionChangeMagnitude) {
+          case 1:
+            wpNorth = oldWpEast;
+            wpEast = -oldWpNorth;
+            break;
+          case 2:
+            wpNorth = -oldWpNorth;
+            wpEast = -oldWpEast;
+            break;
+          case 3:
+            wpNorth = -oldWpEast;
+            wpEast = oldWpNorth;
+            break;
+          default:
+        }
+        break;
+      }
+      case 'R': {
+        const directionChangeMagnitude = value / 90;
+        const oldWpNorth = wpNorth;
+        const oldWpEast = wpEast;
+        switch (directionChangeMagnitude) {
+          case 1:
+            wpNorth = -oldWpEast;
+            wpEast = oldWpNorth;
+            break;
+          case 2:
+            wpNorth = -oldWpNorth;
+            wpEast = -oldWpEast;
+            break;
+          case 3:
+            wpNorth = oldWpEast;
+            wpEast = -oldWpNorth;
+            break;
+          default:
+        }
+        break;
+      }
+      default:
+    }
+  }
+
+  return (north > 0 ? north : -north) + (east > 0 ? east : -east);
+}
+
+export { findManhattanDistance, findManhattanDistance2 };
