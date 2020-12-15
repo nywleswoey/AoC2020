@@ -8,3 +8,5 @@ const buses = testInput[1]
   .filter((x) => x !== "x")
   .map(Number);
 console.log(day13.productBusIDAndWaitTime(time, buses));
+
+console.log(day13.findTimeWhereBusArriveInSeq(testInput[1].split(",")));
