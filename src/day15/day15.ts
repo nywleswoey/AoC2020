@@ -1,4 +1,4 @@
-const get2020thNumber = (numbers: number[]) => {
+const getnthNumber = (numbers: number[], n: number) => {
   const seenMap = new Map<number, number>();
   for (let i = 0; i < numbers.length - 1; i++) {
     seenMap.set(numbers[i], i + 1);
@@ -6,7 +6,7 @@ const get2020thNumber = (numbers: number[]) => {
 
   // game start
   let lastNum = numbers[numbers.length - 1];
-  for (let i = numbers.length + 1; i <= 2020; i++) {
+  for (let i = numbers.length + 1; i <= n; i++) {
     const seenOn = seenMap.get(lastNum);
     if (seenOn === undefined) {
       seenMap.set(lastNum, i - 1)
@@ -19,4 +19,4 @@ const get2020thNumber = (numbers: number[]) => {
   return lastNum;
 }
 
-export { get2020thNumber };
+export { getnthNumber };
