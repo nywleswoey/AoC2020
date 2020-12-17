@@ -7,7 +7,7 @@ import {
 
 const testInput = readFile("inputs/day2/testInput.txt");
 
-describe("day 2 puzzle 1", () => {
+describe("day 2", () => {
   describe("parseLine", () => {
     it("should return ['1','3','a','abcde'] when given '1-3 a: abcde'", () => {
       const input = testInput[0];
@@ -43,16 +43,14 @@ describe("day 2 puzzle 1", () => {
     });
   });
 
-  describe("getNumOfValidPasswords", () => {
+  describe("puzzle 1", () => {
     it("should return 2 when given the test input", () => {
       const result = getNumOfValidPasswords(testInput);
       expect(result).toBe(2);
     });
   });
-});
 
-describe("day 2 puzzle 2", () => {
-  describe("getNumOfValidPasswords2", () => {
+  describe("puzzle 2", () => {
     it("should return 2 when given the test input", () => {
       const result = getNumOfValidPasswords2(testInput);
       expect(result).toBe(1);

@@ -2,8 +2,8 @@ import { readFile } from "../helper";
 import { findManhattanDistance, findManhattanDistance2 } from './day12';
 
 
-describe("day 12 puzzle 1", () => {
-  describe("findManhattanDistance", () => {
+describe("day 12", () => {
+  describe("puzzle 1", () => {
     it("test 1", () => {
       const input = readFile("inputs/day12/testInput.txt");
 
@@ -11,10 +11,8 @@ describe("day 12 puzzle 1", () => {
       expect(result).toBe(25);
     });
   });
-});
 
-describe("day 12 puzzle 2", () => {
-  describe("findManhattanDistance", () => {
+  describe("puzzle 2", () => {
     it("test 1", () => {
       const input = readFile("inputs/day12/testInput.txt");
 

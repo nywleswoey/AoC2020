@@ -1,7 +1,7 @@
 import { countNumYesPerGrp, countNumAllYesPerGrp } from './day6';
 
-describe("day 6 puzzle 1", () => {
-  describe("countNumYesPerGrp", () => {
+describe("day 6", () => {
+  describe("puzzle 1", () => {
     it("test 1", () => {
       const input = ['abc'];
 
@@ -37,10 +37,8 @@ describe("day 6 puzzle 1", () => {
       expect(result).toBe(1);
     });
   });
-});
 
-describe("day 6 puzzle 2", () => {
-  describe("countNumAllYesPerGrp", () => {
+  describe("puzzle 2", () => {
     it("test 1", () => {
       const input = ['abc'];
 

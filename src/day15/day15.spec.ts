@@ -1,8 +1,8 @@
 import { readFile } from "../helper";
 import { getnthNumber } from './day15';
 
-describe("day 15 puzzle 1", () => {
-  describe("get2020thNumber", () => {
+describe("day 15", () => {
+  describe("puzzle 1", () => {
     it("test 1", () => {
       const input = readFile("inputs/day15/testInput.txt")[0].split(',').map(Number);
       const result = getnthNumber(input, 2020);
@@ -15,10 +15,8 @@ describe("day 15 puzzle 1", () => {
       expect(result).toBe(1);
     });
   });
-});
 
-describe("day 15 puzzle 2", () => {
-  describe("get3000000thNumber", () => {
+  describe("puzzle 2", () => {
     it("test 1", () => {
       const input = readFile("inputs/day15/testInput.txt")[0].split(',').map(Number);
       const result = getnthNumber(input, 30000000);

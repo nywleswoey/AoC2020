@@ -2,10 +2,10 @@ import {
   parseFileIntoPassports, areReqFieldsPresent, arePassportValuesValid
 } from "./day4";
 
-describe("day 4 puzzle 1", () => {
+describe("day 4", () => {
   const testPassports = parseFileIntoPassports("inputs/day4/testInput.txt");
 
-  describe("areReqFieldsPresent", () => {
+  describe("puzzle 1", () => {
     it("test passport 1 - valid", () => {
       const input = testPassports[0];
 
@@ -34,10 +34,8 @@ describe("day 4 puzzle 1", () => {
       expect(result).toBe(false);
     });
   });
-});
 
-describe("day 4 puzzle 2", () => {
-  describe("valid passports", () => {
+  describe("puzzle 2", () => {
     it("all passports should return true", () => {
       const testValidPassports = parseFileIntoPassports("inputs/day4/validpp.txt");
 

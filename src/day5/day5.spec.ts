@@ -1,7 +1,7 @@
 import { getBoardingPassDetails } from './day5';
 
-describe("day 5 puzzle 1", () => {
-  describe("getBoardingPassDetails", () => {
+describe("day 5", () => {
+  describe("puzzle 1", () => {
     it("test 1", () => {
       const input = 'BFFFBBFRRR';
 

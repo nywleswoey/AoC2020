@@ -4,7 +4,7 @@ import { getNumTreesEncountered } from "./day3";
 const testInput = readFileInto2DCharArray("inputs/day3/testInput.txt");
 
 describe("day 3", () => {
-  describe("getNumTreesEncountered", () => {
+  describe("puzzle 1", () => {
     it("should return 7 when given the test input with slope 3,1", () => {
       const result = getNumTreesEncountered(testInput, 3, 1);
       expect(result).toBe(7);

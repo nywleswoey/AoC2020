@@ -9,12 +9,4 @@ describe("day 16", () => {
       expect(result).toBe(71);
     });
   });
-
-  describe("puzzle 2", () => {
-    it("test 1", () => {
-      const input = readFile("inputs/day16/testInput.txt");
-      const result = findProductOfDepartureFields(input);
-      expect(result).toBe(71);
-    });
-  });
 });

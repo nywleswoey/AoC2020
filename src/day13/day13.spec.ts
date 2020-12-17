@@ -2,8 +2,8 @@ import { readFile } from "../helper";
 import { productBusIDAndWaitTime, findTimeWhereBusArriveInSeq } from './day13';
 
 
-describe("day 13 puzzle 1", () => {
-  describe("productBusIDAndWaitTime", () => {
+describe("day 13", () => {
+  describe("puzzle 1", () => {
     it("test 1", () => {
       const input = readFile("inputs/day13/testInput.txt");
       const time = Number(input[0]);
@@ -13,10 +13,8 @@ describe("day 13 puzzle 1", () => {
       expect(result).toBe(295);
     });
   });
-});
 
-describe("day 13 puzzle 2", () => {
-  describe("findTimeWhereBusArriveInSeq", () => {
+  describe("puzzle 2", () => {
     it("test 1", () => {
       const input = readFile("inputs/day13/testInput.txt");
       const buses = input[1].split(',');
