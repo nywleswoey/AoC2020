@@ -51,4 +51,61 @@ const evaluate = (input: string): number => {
   return currentValue;
 }
 
-export { evaluate };
+const getOperandBefore = (input: string) => {
+  let level = 0;
+  for (let i = input.length - 1; i >= 0; i--) {
+    let token = input[i];
+    if (token === ('(')) {
+      if (level === 0) {
+        return input.slice(i + 1);
+      }
+      level--;
+    } else if (token === ' ') {
+      if (level === 0) {
+        return input.slice(i);
+      }
+    } else if (token === ')') {
+      level++;
+    }
+  }
+  return input;
+}
+
+const readValue2 = (input: string) => {
+  let i = 0;
+  let level = 0;
+  for (let i = 0; i < input.length; i++) {
+    let token = input[i];
+    if (token === ('(')) {
+      level++;
+    } else if (token === ' ') {
+      if (level === 0) {
+        return [input.slice(0, i), input.slice(i)];
+      }
+    } else if (token === ')') {
+      if (level === 0) {
+        return [input.slice(0, i), input.slice(i)];
+      }
+      level--;
+    }
+  }
+  return [input, ''];
+}
+
+const evaluate2 = (input: string): number => {
+  let plusIndex = input.indexOf('+');
+  if (plusIndex < 0) {
+    return evaluate(input);
+  }
+
+  const firstOpStr = getOperandBefore(input.slice(0, plusIndex - 1)).trim();
+  let result = readValue2(input.slice(plusIndex + 2));
+  const secondOpStr = result[0];
+
+  let currentValue = evaluate2(firstOpStr) + evaluate2(secondOpStr);
+  let newStr = input.slice(0, plusIndex - 1 - firstOpStr.length) + currentValue.toString() + result[1];
+
+  return evaluate2(newStr);
+}
+
+export { evaluate, evaluate2 };
